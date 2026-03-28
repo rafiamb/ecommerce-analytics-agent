@@ -1,0 +1,5 @@
+.env
+olist.db
+__pycache__/
+*.pyc
+.venv/
