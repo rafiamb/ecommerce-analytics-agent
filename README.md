@@ -5,7 +5,7 @@
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?logo=langchain&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 
-A conversational AI agent that lets you query 100,000+ Brazilian e-commerce orders in plain English — no SQL required.
+A conversational AI agent that lets you query 100,000+ Brazilian e-commerce orders in plain English.
 
 Built to explore LLM-powered data analysis and natural language interfaces for SQL databases. The agent takes a plain-English question, generates the appropriate SQL query, executes it against a real e-commerce dataset, and returns a natural language answer with the option to inspect the SQL it used.
 
