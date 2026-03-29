@@ -14,6 +14,7 @@ Built to explore LLM-powered data analysis and natural language interfaces for S
 ## Demo
 
 🔗 **Live Demo: [olist-agent.streamlit.app](https://olist-agent.streamlit.app/)**
+> May take ~30 seconds to wake up on first load.
 
 ---
 
