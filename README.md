@@ -13,34 +13,54 @@ A conversational AI agent that lets you query 100,000+ Brazilian e-commerce orde
 
 ## Project Background
 
-Exploratory data analysis on large relational datasets typically requires writing SQL, a barrier for business users who need answers quickly. This project explores whether an LLM-powered agent can bridge that gap by translating plain-English questions into SQL queries, executing them against a real e-commerce database, and returning natural language answers.
+Built on the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (~100,000 orders across 8 relational tables spanning 2016–2018), this project started as an exploratory analysis of delivery performance and its impact on customer satisfaction — then extended into a conversational AI layer to make those insights accessible without SQL.
 
-Built on the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (~100,000 orders across 8 relational tables spanning 2016 to 2018), the agent handles multi-table queries, aggregations, and filtering without the user writing a single line of SQL.
+The EDA revealed a clear, measurable relationship between logistics performance and customer reviews. Those findings shaped the agent's design: the example queries and schema context are specifically tuned to surface delivery patterns, seller reliability, and category-level performance.
 
-The EDA notebook used to explore the dataset prior to building the agent, covering late delivery rates, review score impact, delay distribution, category revenue, and seller reliability, can be found [here](olist_ecom_eda.ipynb).
+The full EDA notebook covering late delivery rates, review score impact, delay distributions, category revenue, and seller reliability is [here](https://github.com/rafiamb/ecommerce-analytics-agent/blob/main/olist_ecom_eda.ipynb).
+
+---
+
+## Key Findings
+
+| # | Finding |
+|---|---------|
+| 1 | ~8% of delivered orders arrive late, concentrated in northern/remote states |
+| 2 | Late orders score ~2 points lower on average (out of 5) — a direct, measurable cost |
+| 3 | Most delays are 1–5 days, but a long tail of 30+ day delays drives disproportionate review damage |
+| 4 | Health & beauty and watches/gifts generate the most revenue — high-stakes categories for on-time delivery |
+| 5 | Revenue ≠ reliability: top sellers vary widely in on-time rates |
+
+**Recommendations:**
+- **Prioritize carrier coverage in high-delay states** — targeted SLA negotiations or regional carrier partnerships could meaningfully reduce late rates in underserved areas
+- **Introduce seller reliability scores** — surface on-time rate alongside revenue in seller dashboards to incentivize accountability
+- **Flag extreme-delay risk orders early** — orders with long estimated delivery windows are more likely to breach SLA; proactive communication can soften review impact
 
 ---
 
 ## How It Works
 
-The agent accepts natural language questions, generates the appropriate SQL query, executes it against the Olist database, and returns a natural language answer. Users can expand any response to inspect the underlying SQL query that was run.
+The agent accepts natural language questions, generates the appropriate SQL query, executes it against the Olist database, and returns a natural language answer. Users can expand any response to inspect the underlying SQL that was run.
 
-<img src="ecom_agent.png" width="800">
+![Agent Demo](ecom_agent.png)
 
 **Example questions:**
+
 - Which 5 states have the highest late delivery rate?
 - What is the average review score for late vs on-time orders?
 - Which product category generates the most revenue?
 - How many orders were placed each month in 2018?
 - Which sellers have the best on-time rate with over 50 orders?
 - What's the average number of days between order and delivery?
+- What's the review score distribution for orders delayed 7+ days?
+- Which states have both high revenue and high late delivery rates?
 
 ---
 
 ## Tech Stack
 
 | Layer | Tool |
-|---|---|
+|-------|------|
 | Frontend | Streamlit |
 | Agent | LangChain SQL Agent |
 | LLM | GPT-4o (OpenAI) |
@@ -60,13 +80,13 @@ Tables used: `orders`, `order_items`, `order_reviews`, `order_payments`, `custom
 ## Running Locally
 
 **1. Clone the repo**
-```bash
+```
 git clone https://github.com/rafiamb/ecommerce-analytics-agent.git
 cd ecommerce-analytics-agent
 ```
 
 **2. Install dependencies**
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -78,7 +98,7 @@ OPENAI_API_KEY=sk-...
 ```
 
 **4. Run the app**
-```bash
+```
 streamlit run app.py
 ```
 
