@@ -5,7 +5,7 @@
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?logo=langchain&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
 
-A conversational AI agent that lets you query 100,000+ Brazilian e-commerce orders in plain English. No SQL required.
+A business intelligence tool built to surface delivery performance insights from 100,000+ e-commerce orders — no SQL required.
 
 🔗 **Live Demo: [olist-agent.streamlit.app](https://olist-agent.streamlit.app/)** *(may take ~30 seconds to wake up on first load)*
 
@@ -13,9 +13,11 @@ A conversational AI agent that lets you query 100,000+ Brazilian e-commerce orde
 
 ## Project Background
 
-Built on the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (~100,000 orders across 8 relational tables spanning 2016–2018), this project started as an exploratory analysis of delivery performance and its impact on customer satisfaction — then extended into a conversational AI layer to make those insights accessible without SQL.
+Delivery performance is one of the most controllable drivers of customer satisfaction in e-commerce, yet the data needed to act on it is often locked inside SQL databases inaccessible to operations and account teams. This project started with an EDA of the Olist Brazilian E-Commerce dataset to quantify exactly how much delivery failures cost in customer satisfaction — then extended into a conversational AI layer to put those insights directly in the hands of non-technical stakeholders.
 
-The EDA revealed a clear, measurable relationship between logistics performance and customer reviews. Those findings shaped the agent's design: the example queries and schema context are specifically tuned to surface delivery patterns, seller reliability, and category-level performance.
+The analysis identified that ~8% of orders arrive late, concentrated in specific regions, with a measurable ~2 point review score impact. Those findings shaped the agent's design: the schema context and example queries are specifically tuned to surface delivery risk patterns, seller reliability scores, and SLA breach indicators that operations teams can act on.
+
+Built on the [Olist Brazilian E-Commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (~100,000 orders across 8 relational tables spanning 2016–2018).
 
 The full EDA notebook covering late delivery rates, review score impact, delay distributions, category revenue, and seller reliability is [here](https://github.com/rafiamb/ecommerce-analytics-agent/blob/main/olist_ecom_eda.ipynb).
 
